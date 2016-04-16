@@ -1,16 +1,12 @@
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "http://192.168.3.148/Events.csv",
+        url: "./Events.csv",
         dataType: "text",
         success: function(data) { renderPage(data);}
      });
 });
-
-
-
-
-			
+		
 function renderPage( data ){
 	
 	var itemData = processData( data );
@@ -20,10 +16,7 @@ function renderPage( data ){
 		if (undefined != entryObject['photo']) {
 			var imgURL = entryObject['photo'];
 			var timeStamp = entryObject['time'];
-			entries += "<div class='entry'> \
-				<img class='historyPhoto' src='" + imgURL + "'>\
-				<div>" + timeStamp + "</div>\
-			</div>";
+			entries += "<div class='entry'><a href='" + imgURL + "' data-featherlight='image'><img class='historyPhoto' src='" + imgURL + "'><div>" + timeStamp + "</a></div>\</div>";
 			console.log(entries);
 		}
 	}
